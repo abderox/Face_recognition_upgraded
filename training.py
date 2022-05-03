@@ -40,12 +40,12 @@ def getImagesAndLabels(path):
     return faceSamples,ids
 
 
-faces,ids = getImagesAndLabels('dataset')
+faces,ids = getImagesAndLabels('dataset1')
 
 # Entrainement du modèle
 print("Training ...\nWAIT !")
 recognizer.train(faces, np.array(ids))
 
 # Sauvegarder le modèle dans un fichier yaml
-assure_path_exists('saved_model/')
-recognizer.write('saved_model/s_model.yml')
+assure_path_exists('saved_model1/')
+recognizer.write('saved_model1/s_model.yml')
