@@ -1,5 +1,6 @@
 /preparing_data
 /saved_model
 /saved_model1
-/dataset/
-/dataset1/
+/dataset
+/dataset1
+EDSR_x3.pb
