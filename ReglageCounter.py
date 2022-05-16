@@ -4,7 +4,9 @@ import numpy as np
 import time
 from face_recognition import facerecognition
 
-cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
+
+
+cap = cv2.VideoCapture(0)
 i=0
 def video(i):
     ret, frame = cap.read()
@@ -16,7 +18,7 @@ def video(i):
     else:
             print("No image detected. Please! try again")
 
-while(cap.isOpened() and i <40):
+while(cap.isOpened() and i <20):
     video(i)
     time.sleep(5)
     i+=1
