@@ -6,7 +6,7 @@ from face_recognition import facerecognition
 
 
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
 i=0
 def video(i):
     ret, frame = cap.read()
@@ -18,7 +18,7 @@ def video(i):
     else:
             print("No image detected. Please! try again")
 
-while(cap.isOpened() and i <20):
+while(cap.isOpened() and i <4):
     video(i)
     time.sleep(5)
     i+=1

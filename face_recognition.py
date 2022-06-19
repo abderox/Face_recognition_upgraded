@@ -49,8 +49,12 @@ def facerecognition():
     camera_port = 1
 
     etudiants = {
-        1: "FIROUD",
-        2: "NAOUFAL",
+        3: "abde",
+        2: "narjis",
+        14: "sami",
+        16: "sami",
+        17: "aminatou",
+        
     }
 
     recognizer = cv2.face.LBPHFaceRecognizer_create()
@@ -74,22 +78,22 @@ def facerecognition():
         auto_result, alpha, beta = automatic_brightness_and_contrast(img)
 
         ############################################
-        gray = cv2.cvtColor(auto_result, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         faces = faceCascade.detectMultiScale(gray, scaleFactor=1.5, minNeighbors=5, minSize=(30, 30))
 
         for (x, y, w, h) in faces:
-            cv2.rectangle(auto_result, (x - 20, y - 20), (x + w + 20, y + h + 20), (0, 255, 0), 2)
+            cv2.rectangle(img, (x - 20, y - 20), (x + w + 20, y + h + 20), (0, 255, 0), 2)
 
             Id, confidence = recognizer.predict(gray[y:y + h, x:x + w])
 
             if ((100 - confidence) > 10):
                 label = etudiants[Id] + " {0:.2f}%".format(round(100 - confidence, 2))
 
-                cv2.rectangle(auto_result, (x - 20, y - 85), (x + w + 20, y - 20), (0, 255, 0), -1)
-                cv2.putText(auto_result, label, (x, y - 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+                cv2.rectangle(img, (x - 20, y - 85), (x + w + 20, y - 20), (0, 255, 0), -1)
+                cv2.putText(img, label, (x, y - 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
                 writer.output('Presence_IRISI2_', 'IRISI 2', Id, etudiants[Id], 'yes')
             else:
-                cv2.putText(auto_result, "non reconnu", (x, y - 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+                cv2.putText(img, "non reconnu", (x, y - 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
         # cv2.imshow('face recognition', img)
 
@@ -97,7 +101,7 @@ def facerecognition():
             break
 
         while (True):
-            cv2.imshow('frame', auto_result);
+            cv2.imshow('frame', img);
             if cv2.waitKey(100) & 0xFF == ord('q'):
                 break;
 
